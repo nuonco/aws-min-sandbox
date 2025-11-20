@@ -1,5 +1,3 @@
-
-
 locals {
   # nuon dns
   enable_nuon_dns = contains(["1", "true"], var.enable_nuon_dns)
@@ -50,23 +48,10 @@ variable "deprovision_iam_role_arn" {
   description = "The deprovision IAM Role ARN"
 }
 
-# kyverno policies
-variable "kyverno_policy_dir" {
-  type        = string
-  description = "Path to a directory with kyverno policy manifests."
-  default     = "./kyverno-policies"
-}
-
 variable "additional_tags" {
   type        = map(any)
   description = "Extra tags to append to the default tags that will be added to install resources."
   default     = {}
-}
-
-variable "prefix_override" {
-  type        = string
-  description = "The resource prefix to override, otherwise defaults to the nuon install id"
-  default     = ""
 }
 
 #
@@ -77,10 +62,10 @@ variable "enable_nuon_dns" {
   type        = string
   default     = "false"
   description = "Whether or not the app should use a nuon-provided nuon.run domain. Controls the cert-manager-issuer and the route_53_zone."
-} 
+}
 
 #
-# set by nuon
+# provided by nuon
 #
 
 # Automatically set by Nuon when provisioned.
